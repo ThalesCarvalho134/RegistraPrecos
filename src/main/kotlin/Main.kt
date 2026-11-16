@@ -1,6 +1,6 @@
 data class ProdutoComprado(
     val produto: String,
-    val preco: Double?
+    val preco: Double
 )
 
 data class ProdutoUsado(
@@ -38,7 +38,10 @@ fun menu(comprados: MutableList<ProdutoComprado>, usados: MutableList<ProdutoUsa
             "3" -> listarComprados(comprados)
             "4" -> listarUsados(usados)
             "5" -> editarUsados(usados)
-            "0" -> sair()
+            "0" -> {
+                sair()
+                rodando = false
+            }
         }
     }
 }
@@ -91,12 +94,30 @@ fun registrarUsado(usados: MutableList<ProdutoUsado>) {
     }
 }
 
-fun listarComprados(comprados: MutableList<ProdutoComprado>) {}
+fun listarComprados(comprados: MutableList<ProdutoComprado>) {
+    if (comprados.isEmpty()) {
+        println("Nenhum produto comprado foi adicionado!")
+    }
+    else {
+        println("--- Produtos Comprados ---")
+        comprados.forEachIndexed { index, item ->
+            println("${index + 1} - ${item.produto} | R$ ${item.preco}")
+        }
+    }
+}
 
-fun listarUsados(usados: MutableList<ProdutoUsado>) {}
+fun listarUsados(usados: MutableList<ProdutoUsado>) {
+    if (usados.isEmpty()) {
+        println("Nenhum produto usado foi adicionado!")
+    }
+    else {
+        println("--- Produtos Usados ---")
+        usados.forEachIndexed { index, item ->
+            println("${index + 1} - ${item.produto} | R$ ${item.preco}")
+        }
+    }
+}
 
 fun editarUsados(usados: MutableList<ProdutoUsado>) {}
 
-fun sair() {
-
-}
+fun sair() {}
