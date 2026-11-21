@@ -26,7 +26,7 @@ Aplicação de console desenvolvida em **Kotlin** para cadastro, listagem e atua
 3. Localize o arquivo principal (`Main.kt`) e execute a função `main()`.
 4. Utilize as opções numéricas (`0` a `5`) no console para navegar pelo menu.
 
-## 📋 Menu da Aplicação
+## Menu da Aplicação
 
 ```text
 O que deseja fazer:
@@ -38,6 +38,6 @@ O que deseja fazer:
 0 -> Sair
 ```
 
-## 👨‍💻 Autor
+## Autor
 
 Desenvolvido por **Thales Alexandre** como projeto prático de estudos em lógica de programação e desenvolvimento backend com Kotlin.
