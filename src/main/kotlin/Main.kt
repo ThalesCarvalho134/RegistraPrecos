@@ -19,12 +19,12 @@ fun menu(comprados: MutableList<ProdutoComprado>, usados: MutableList<ProdutoUsa
     var rodando = true
     while (rodando) {
         println("Oque deseja fazer: ")
-        println("1 -> Registrar produto comprado")
-        println("2 -> Registrar produto usado")
-        println("3 -> Listar produtos comprados")
-        println("4 -> Listar produtos usados")
-        println("5 -> Editar preço de um produto usado")
-        println("0 -> Sair")
+        println("1- Registrar produto comprado")
+        println("2- Registrar produto usado")
+        println("3- Listar produtos comprados")
+        println("4- Listar produtos usados")
+        println("5- Editar preço de um produto usado")
+        println("0- Sair")
         var escolha = readln()
         while (escolha !in listOf("1", "2", "3", "4", "5", "0")) {
             println("Ops! opção invalida, tente novamente")
@@ -56,7 +56,7 @@ fun registrarComprado(comprados: MutableList<ProdutoComprado>) {
         valorProduto = readln().replace(",", ".").toDoubleOrNull()
     }
     println("---Resumo do produto---")
-    println("$nomeProduto ----- R$$valorProduto")
+    println("$nomeProduto ----- R$${"%.2f".format(valorProduto)}")
     println("Deseja adicionar esse produto? (S/N)")
     val confirma = readln().uppercase()
     if (confirma == "S") {
@@ -80,7 +80,7 @@ fun registrarUsado(usados: MutableList<ProdutoUsado>) {
         valorProduto = readln().replace(",", ".").toDoubleOrNull()
     }
     println("---Resumo do produto---")
-    println("$nomeProduto ----- R$$valorProduto")
+    println("$nomeProduto ----- R$${"%.2f".format(valorProduto)}")
     println("Deseja adicionar esse produto? (S/N)")
     val confirma = readln().uppercase()
     if (confirma == "S") {
@@ -101,7 +101,7 @@ fun listarComprados(comprados: MutableList<ProdutoComprado>) {
     else {
         println("--- Produtos Comprados ---")
         comprados.forEachIndexed { index, item ->
-            println("${index + 1} - ${item.produto} | R$ ${item.preco}")
+            println("${index + 1} - ${item.produto} | R$ ${"%.2f".format(item.preco)}")
         }
     }
 }
@@ -113,7 +113,7 @@ fun listarUsados(usados: MutableList<ProdutoUsado>) {
     else {
         println("--- Produtos Usados ---")
         usados.forEachIndexed { index, item ->
-            println("${index + 1} - ${item.produto} | R$ ${item.preco}")
+            println("${index + 1} - ${item.produto} | R$ ${"%.2f".format(item.preco)}")
         }
     }
 }
@@ -138,8 +138,10 @@ fun editarUsados(usados: MutableList<ProdutoUsado>) {
         }
         val indice = mudar - 1
         usados[indice].preco = novoPreco
-        println("Preço de ${usados[indice].produto} atualizado para R$$novoPreco!")
+        println("Preço de ${usados[indice].produto} atualizado para R$${"%.2f".format(novoPreco)}!")
     }
 }
 
-fun sair() {}
+fun sair() {
+    println("Saindo do RegistraPreços... Até a próxima!")
+}
