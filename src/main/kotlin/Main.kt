@@ -118,6 +118,28 @@ fun listarUsados(usados: MutableList<ProdutoUsado>) {
     }
 }
 
-fun editarUsados(usados: MutableList<ProdutoUsado>) {}
+fun editarUsados(usados: MutableList<ProdutoUsado>) {
+    if (usados.isEmpty()) {
+        println("Nenhum produto usado foi adicionado!")
+    }
+    else {
+        listarUsados(usados)
+        println("Digite o número do produto que deseja mudar o preço: ")
+        var mudar = readln().toIntOrNull()
+        while (mudar == null || mudar !in 1..usados.size) {
+            print("Número inválido! Digite um item da lista: ")
+            mudar = readln().toIntOrNull()
+        }
+        print("Qual será o novo preço: R$")
+        var novoPreco = readln().replace(",", ".").toDoubleOrNull()
+        while (novoPreco == null || novoPreco < 0) {
+            print("Valor inválido! Digite um valor válido: R$")
+            novoPreco = readln().replace(",", ".").toDoubleOrNull()
+        }
+        val indice = mudar - 1
+        usados[indice].preco = novoPreco
+        println("Preço de ${usados[indice].produto} atualizado para R$$novoPreco!")
+    }
+}
 
 fun sair() {}
